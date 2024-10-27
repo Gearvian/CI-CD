@@ -1,0 +1,3 @@
+[submodule "flask-github-actions"]
+	path = flask-github-actions
+	url = https://github.com/faialotaibi/flask-github-actions.git
