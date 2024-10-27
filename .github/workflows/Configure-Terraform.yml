@@ -1,0 +1,32 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -var "access_key=${{ secrets.ALICLOUD_ACCESS_KEY }}" -var "secret_key=${{ secrets.ALICLOUD_SECRET_KEY }}"
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve -var "access_key=${{ secrets.ALICLOUD_ACCESS_KEY }}" -var "secret_key=${{ secrets.ALICLOUD_SECRET_KEY }}"
