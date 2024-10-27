@@ -10,3 +10,9 @@
 
 # Specify LF for the Dockerfile
 Dockerfile text eol=lf
+
+# Set default behavior for text files
+* text=auto
+
+# Specify LF for Terraform files
+*.tf text eol=lf

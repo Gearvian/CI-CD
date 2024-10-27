@@ -1,4 +1,4 @@
-name: Pull Test with Docker
+name: test22
 
 on:
   pull_request:
@@ -21,11 +21,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      - name: Pull Docker Image
-        run: |
-          echo "Pulling Docker image..."
-          docker pull gearvian/flask-github-actions:latest || echo "Docker pull failed"
 
       - name: Build and Push
         uses: docker/build-push-action@v6
