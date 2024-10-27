@@ -9,4 +9,5 @@ htmlcov/
 .tox/
 docs/_build/
 .DS_Store
+.terraform/providers/registry.terraform.io/hashicorp/alicloud/1.232.0/windows_amd64/terraform-provider-alicloud_v1.232.0.exe
 
