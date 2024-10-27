@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 resource "alicloud_security_group" "nginxSecGroup" {
   name        = "nginx"
   description = "nginx security group"
@@ -24,30 +23,3 @@ resource "alicloud_security_group_rule" "sshSecGroup" {
   security_group_id = alicloud_security_group.nginxSecGroup.id
   cidr_ip           = "0.0.0.0/0"
 }
-=======
-resource "alicloud_security_group" "nginxSecGroup" {
-  name        = "nginx"
-  description = "nginx security group"
-  vpc_id      = alicloud_vpc.HWvpc.id
-}
-
-
-resource "alicloud_security_group_rule" "httpSecGroup" {
-  type              = "ingress"
-  ip_protocol       = "tcp"
-  policy            = "accept"
-  port_range        = "80/80"
-  priority          = 1
-  security_group_id = alicloud_security_group.nginxSecGroup.id
-  cidr_ip           = "0.0.0.0/0"
-}
-resource "alicloud_security_group_rule" "sshSecGroup" {
-  type              = "ingress"
-  ip_protocol       = "tcp"
-  policy            = "accept"
-  port_range        = "22/22"
-  priority          = 1
-  security_group_id = alicloud_security_group.nginxSecGroup.id
-  cidr_ip           = "0.0.0.0/0"
-}
->>>>>>> fe66b443b2af0bcc08ac8acd3d69c57b91576a9d
