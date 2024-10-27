@@ -16,20 +16,17 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.0.0  # Specify your Terraform version
+          terraform_version: 1.0.0
 
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform Validate
+        run: terraform validate
+
       - name: Terraform Plan
-        env:
-          ALICLOUD_ACCESS_KEY: ${{ secrets.ALICLOUD_ACCESS_KEY }}
-          ALICLOUD_SECRET_KEY: ${{ secrets.ALICLOUD_SECRET_KEY }}
         run: terraform plan -var "access_key=${{ secrets.ALICLOUD_ACCESS_KEY }}" -var "secret_key=${{ secrets.ALICLOUD_SECRET_KEY }}"
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        env:
-          ALICLOUD_ACCESS_KEY: ${{ secrets.ALICLOUD_ACCESS_KEY }}
-          ALICLOUD_SECRET_KEY: ${{ secrets.ALICLOUD_SECRET_KEY }}
         run: terraform apply -auto-approve -var "access_key=${{ secrets.ALICLOUD_ACCESS_KEY }}" -var "secret_key=${{ secrets.ALICLOUD_SECRET_KEY }}"
