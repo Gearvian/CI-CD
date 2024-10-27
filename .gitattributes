@@ -4,3 +4,9 @@
 # Specify LF for YAML files
 *.yml text eol=lf
 *.yaml text eol=lf
+
+# Set default behavior for all text files
+* text=auto
+
+# Specify LF for the Dockerfile
+Dockerfile text eol=lf
